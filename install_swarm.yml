@@ -1,0 +1,23 @@
+- name: install nfs_server
+  hosts: nfs_server
+  become: yes
+  roles:
+  - nfs_server
+  tags:
+  - nfs_server
+
+- name: install swarm cluster
+  hosts: docker
+  become: yes
+  roles:    
+    - docker
+    - swarm
+    - nfs_client
+    - tooling
+
+- name: deploy wordpress stack
+  hosts: managers
+  become: yes
+  roles:
+    - stack-app
+

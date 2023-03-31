@@ -1,0 +1,27 @@
+---
+# tasks file for roles/stack-app
+
+- name: install jsondiff
+  apt:
+    name: python3-jsondiff
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Check if stack folder exists under /shared/configs
+  file:
+    path: "/shared/configs/wordpress"
+    state: directory
+
+- name: Copy stack compose file to /shared/configs
+  copy:
+    src: wordpress-stack-compose.yml
+    dest: /shared/configs/wordpress/wordpress-stack-compose.yml
+
+- name: deploy stack
+  docker_stack:
+    name: wordpress
+    state: present
+    compose:
+      - /shared/configs/wordpress/wordpress-stack-compose.yml
+  

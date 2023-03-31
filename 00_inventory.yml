@@ -1,0 +1,14 @@
+all:
+  children:
+    docker:
+      children:
+        managers:
+          hosts:
+            192.168.56.10:
+        workers:
+          hosts:
+            192.168.56.11:
+            192.168.56.12:
+    nfs_server:
+      hosts:
+        192.168.56.13:

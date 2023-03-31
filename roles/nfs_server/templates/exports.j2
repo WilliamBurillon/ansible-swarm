@@ -1,0 +1,5 @@
+# edited by ansible
+# This file will contains which server will have access to the specified folder
+{% for export in nfs_server_dir_data %}
+/shared/{{ export }} 192.168.56.0/24(rw,sync,no_root_squash,no_subtree_check)
+{% endfor %}

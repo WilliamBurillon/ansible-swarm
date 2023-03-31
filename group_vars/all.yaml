@@ -1,0 +1,4 @@
+nfs_server_dir_data:
+  - "configs"
+  - "projects"
+  - "services"
